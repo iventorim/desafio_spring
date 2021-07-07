@@ -1,6 +1,7 @@
 package com.meli.socialmeli.controller;
 
 import com.meli.socialmeli.dto.CountPromoSellerDTO;
+import com.meli.socialmeli.dto.ListPromoProdSellerDTO;
 import com.meli.socialmeli.service.SellerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,6 +24,12 @@ public class ProductController {
     @ResponseStatus(HttpStatus.OK)
     public CountPromoSellerDTO getCountPromoSeller(@PathVariable Integer userId) {
         return sellerService.getCountPostPromoSeller(userId);
+    }
+
+    @GetMapping("products/{userId}/list")
+    @ResponseStatus(HttpStatus.OK)
+    public ListPromoProdSellerDTO getListPromoProdSeller(@PathVariable Integer userId) {
+        return sellerService.getListPromoProdSeller(userId);
     }
 
 }
