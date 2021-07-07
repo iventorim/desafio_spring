@@ -1,5 +1,6 @@
 package com.meli.socialmeli.controller;
 
+import com.meli.socialmeli.dto.ClientDTO;
 import com.meli.socialmeli.entity.Client;
 import com.meli.socialmeli.repository.ClientRepository;
 import com.meli.socialmeli.service.ClientService;
@@ -23,8 +24,8 @@ public class ClientController {
 
     @GetMapping("/users/{UserID}/followed/list")
     @ResponseStatus(HttpStatus.OK)
-    private Client whoAmIFollowing(@PathVariable Integer UserID) {
-        return clientService.findById(UserID);
+    private ClientDTO whoAmIFollowing(@PathVariable Integer UserID) {
+        return ClientDTO.converter(clientService.findById(UserID));
     }
 
 }

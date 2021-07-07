@@ -4,6 +4,7 @@ import com.meli.socialmeli.entity.Client;
 import com.meli.socialmeli.repository.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 
 import java.util.NoSuchElementException;
 
@@ -18,11 +19,15 @@ public class ClientService {
     }
 
     public Client findById(Integer UserID) {
+
+//        if(UserID instanceof Integer == false){
+//            throw new ("Não é um userId valido");
+//        }
         return clientRepository
                 .findById(UserID)
                 .stream()
                 .findFirst()
-                .orElseThrow(() -> new NoSuchElementException("UserId " +UserID + " não encontrado"));
+                .orElseThrow(() -> new NoSuchElementException("UserId " + UserID + " não encontrado"));
     }
 
 }
