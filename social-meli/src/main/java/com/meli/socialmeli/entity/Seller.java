@@ -26,7 +26,8 @@ public class Seller extends User {
     @JsonIgnore
     private List<Post> posts = new ArrayList<>();
 
-    public Seller() {}
+    public Seller() {
+    }
 
     public List<Client> getFollowers() {
         return followers;
@@ -44,11 +45,11 @@ public class Seller extends User {
         this.posts = posts;
     }
 
-    public void addFollower(Client client){
+    public void addFollower(Client client) {
         this.followers.add(client);
     }
 
-    public void removeFollower(Client client){
+    public void removeFollower(Client client) {
         this.followers.remove(client);
     }
 }
