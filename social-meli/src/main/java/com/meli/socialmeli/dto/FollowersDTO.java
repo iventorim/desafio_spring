@@ -10,9 +10,9 @@ public class FollowersDTO {
 
     private Integer userId;
     private String username;
-    private List<ClientDTO> followers;
+    private List<Client> followers;
 
-    public FollowersDTO(Integer userId, String username, List<ClientDTO> followers) {
+    public FollowersDTO(Integer userId, String username, List<Client> followers) {
         this.userId = userId;
         this.username = username;
         this.followers = followers;
@@ -26,14 +26,14 @@ public class FollowersDTO {
         return username;
     }
 
-    public List<ClientDTO> getFollowers() {
+    public List<Client> getFollowers() {
         return followers;
     }
 
     public static FollowersDTO convert(Seller seller){
         return new FollowersDTO(seller.getUserId(),
                 seller.getUsername(),
-                seller.getFollowers().stream().map(ClientDTO::convert).collect(Collectors.toList()))
-                ;
+                seller.getFollowers()
+        );
     }
 }
