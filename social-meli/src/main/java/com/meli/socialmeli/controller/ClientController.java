@@ -22,4 +22,10 @@ public class ClientController {
         clientService.addUserFollower(userId, userIdToFollow);
     }
 
+    @PostMapping("/users/{userId}/unfollow/{userIdToUnfollow}")
+    @ResponseStatus(HttpStatus.OK)
+    public void removeFollower(@PathVariable int userId, @PathVariable int userIdToUnfollow){
+        clientService.removeUserFollower(userId, userIdToUnfollow);
+    }
+
 }
