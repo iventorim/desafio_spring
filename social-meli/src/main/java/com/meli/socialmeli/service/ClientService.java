@@ -22,7 +22,7 @@ public class ClientService {
         this.repository = repository;
     }
 
-    public List<Post> getUserFollowingSellersPosts(int userId) {
+    public List<Post> getUserFollowingSellersPosts(int userId, String order) {
         Client client = repository.findById(userId)
                 .orElseThrow(() -> new ClientNotFoundException("Cliente " + userId + " não encontrado."));
 
@@ -43,6 +43,10 @@ public class ClientService {
         postList.sort((o1, o2) -> {
             if (o1.getDate() == null || o2.getDate() == null) {
                 return 0;
+            }
+
+            if ("date_asc".equals(order)) {
+                return o1.getDate().compareTo(o2.getDate());
             }
 
             return o2.getDate().compareTo(o1.getDate());
