@@ -33,6 +33,14 @@ public class ClientService {
                 .map(Seller::getPosts)
                 .forEach(postList::addAll);
 
+        postList.sort((o1, o2) -> {
+            if (o1.getDate() == null || o2.getDate() == null) {
+                return 0;
+            }
+
+            return o2.getDate().compareTo(o1.getDate());
+        });
+
         return postList;
     }
 }
