@@ -1,5 +1,8 @@
 package com.meli.socialmeli.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 
@@ -10,6 +13,7 @@ public class Post {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idPost;
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     private LocalDate date;
 
     @ManyToOne
@@ -24,6 +28,7 @@ public class Post {
 
     private Double discount;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name="seller_id")
     private Seller seller;
