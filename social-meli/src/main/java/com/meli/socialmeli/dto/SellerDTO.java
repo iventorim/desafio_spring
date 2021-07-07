@@ -5,7 +5,7 @@ import com.meli.socialmeli.entity.Seller;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class SellerDTO implements Comparable<SellerDTO> {
+public class SellerDTO {
     private String username;
     private Integer userId;
 
@@ -49,10 +49,5 @@ public class SellerDTO implements Comparable<SellerDTO> {
 
     public void setUserId(Integer userId) {
         this.userId = userId;
-    }
-
-    @Override
-    public int compareTo(SellerDTO compareSeller) {
-        return this.username.compareToIgnoreCase(compareSeller.getUsername());
     }
 }
