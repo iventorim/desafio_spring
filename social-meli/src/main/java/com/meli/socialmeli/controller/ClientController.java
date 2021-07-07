@@ -1,20 +1,20 @@
 package com.meli.socialmeli.controller;
 
+import com.meli.socialmeli.dto.ClientDTO;
 import com.meli.socialmeli.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-
 @RestController
 public class ClientController {
 
-    final ClientService clientService;
+    private final ClientService clientService;
+
     @Autowired
     public ClientController(ClientService clientService) {
         this.clientService = clientService;
     }
-
 
     @PostMapping("/users/{userId}/follow/{userIdToFollow}")
     @ResponseStatus(HttpStatus.OK)
@@ -28,4 +28,10 @@ public class ClientController {
         clientService.removeUserFollower(userId, userIdToUnfollow);
     }
 
+    @GetMapping("/users/{UserID}/followed/list")
+    @ResponseStatus(HttpStatus.OK)
+    private ClientDTO whoAmIFollowing(@PathVariable Integer UserID, @RequestParam(required = false) String order) {
+        ClientDTO clienteDTO = ClientDTO.converter(clientService.findById(UserID, order));
+        return clienteDTO;
+    }
 }
