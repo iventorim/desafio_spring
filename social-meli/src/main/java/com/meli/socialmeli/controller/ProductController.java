@@ -3,7 +3,6 @@ package com.meli.socialmeli.controller;
 import com.meli.socialmeli.dto.UserFollowingPostsDTO;
 import com.meli.socialmeli.entity.Post;
 import com.meli.socialmeli.service.ClientService;
-import com.meli.socialmeli.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,12 +18,10 @@ import java.util.List;
 @RequestMapping("/products")
 public class ProductController {
 
-    private final ProductService service;
     private final ClientService clientService;
 
     @Autowired
-    public ProductController(ProductService service, ClientService clientService) {
-        this.service = service;
+    public ProductController(ClientService clientService) {
         this.clientService = clientService;
     }
 
