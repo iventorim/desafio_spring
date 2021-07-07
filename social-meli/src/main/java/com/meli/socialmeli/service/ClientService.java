@@ -5,6 +5,7 @@ import com.meli.socialmeli.repository.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
 import java.util.NoSuchElementException;
 
@@ -20,9 +21,9 @@ public class ClientService {
 
     public Client findById(Integer UserID) {
 
-//        if(UserID instanceof Integer == false){
-//            throw new ("Não é um userId valido");
-//        }
+        //        if(UserID instanceof Integer == false){
+        //            throw new MethodArgumentTypeMismatchException(UserID,Number,"UserID invalido");
+        //        }
         return clientRepository
                 .findById(UserID)
                 .stream()
