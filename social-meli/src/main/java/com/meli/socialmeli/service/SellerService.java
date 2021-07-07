@@ -1,6 +1,7 @@
 package com.meli.socialmeli.service;
 
 import com.meli.socialmeli.dto.CountPromoSellerDTO;
+import com.meli.socialmeli.dto.ListPromoProdSellerDTO;
 import com.meli.socialmeli.entity.Post;
 import com.meli.socialmeli.entity.Seller;
 import com.meli.socialmeli.repository.SellerRepository;
@@ -42,4 +43,16 @@ public class SellerService {
                 .collect(Collectors.toList());
     }
 
+    public ListPromoProdSellerDTO getListPromoProdSeller(Integer idSeller) {
+
+        Optional<Seller> optionalSeller = sellerRepository.findById(idSeller);
+
+        if(optionalSeller.isPresent()) {
+            Seller seller = optionalSeller.get();
+            List<Post> postsSellerPromotions = this.getPostsSellerPromotions(seller);
+            return new ListPromoProdSellerDTO(seller.getUserId(), seller.getUsername(), postsSellerPromotions);
+        }
+
+        throw new NoSuchElementException("Não foi encontrado nenhum usuário vendedor com o id: "+idSeller);
+    }
 }
