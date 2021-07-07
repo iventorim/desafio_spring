@@ -27,6 +27,6 @@ public class ProductController {
     @GetMapping("/followed/{userId}/list")
     @ResponseStatus(HttpStatus.OK)
     public UserFollowingPostsDTO listSellersPostsByUserId(@PathVariable int userId) {
-        return new UserFollowingPostsDTO(userId, clientService.getFollowingPosts(userId));
+        return new UserFollowingPostsDTO(userId, clientService.getUserFollowingSellersPosts(userId));
     }
 }

@@ -21,7 +21,7 @@ public class ClientService {
         this.repository = repository;
     }
 
-    public List<Post> getFollowingPosts(int userId) {
+    public List<Post> getUserFollowingSellersPosts(int userId) {
         Client client = repository.findById(userId)
                 .orElseThrow(() -> new ClientNotFoundException("Cliente " + userId + " não encontrado."));
 
