@@ -11,10 +11,11 @@ import org.springframework.web.method.annotation.MethodArgumentTypeMismatchExcep
 public class MethodArgumentTypeMismatchExceptionHandler {
 
     @ExceptionHandler(MethodArgumentTypeMismatchException.class)
-    protected ResponseEntity<Object> defaultHandler(MethodArgumentTypeMismatchException e) {
+    public ResponseEntity<ExceptionDTO> defaultHandler(MethodArgumentTypeMismatchException e) {
 
+        String error = e.getName() + " deve ser do tipo " + e.getRequiredType().getName();
         return ResponseEntity
                 .status(HttpStatus.BAD_REQUEST)
-                .body(new ExceptionDTO(e.getMessage(), HttpStatus.BAD_REQUEST.value()));
+                .body(new ExceptionDTO(error, HttpStatus.BAD_REQUEST.value()));
     }
 }

@@ -27,5 +27,4 @@ public class ClientController {
     private ClientDTO whoAmIFollowing(@PathVariable Integer UserID) {
         return ClientDTO.converter(clientService.findById(UserID));
     }
-
 }

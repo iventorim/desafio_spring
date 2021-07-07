@@ -12,6 +12,7 @@ public class ClientDTO {
     private List<SellerDTO> followersDTO;
 
     // constructors
+
     public ClientDTO(String username, Integer userId, List<SellerDTO> followersDTO) {
         this.username = username;
         this.userId = userId;
@@ -20,7 +21,7 @@ public class ClientDTO {
 
     public ClientDTO(Client client) {
         this.username = client.getUsername();
-        this.userId = client.getUserId();;
+        this.userId = client.getUserId();
         this.followersDTO = SellerDTO.converter(client.getFollowing());
     }
 
@@ -35,7 +36,6 @@ public class ClientDTO {
                 .map(ClientDTO::converter)
                 .collect(Collectors.toList());
     }
-
 
     // getters and setters
     public String getUsername() {

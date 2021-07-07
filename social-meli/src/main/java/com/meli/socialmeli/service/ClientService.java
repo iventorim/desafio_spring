@@ -20,15 +20,10 @@ public class ClientService {
     }
 
     public Client findById(Integer UserID) {
-
-        //        if(UserID instanceof Integer == false){
-        //            throw new MethodArgumentTypeMismatchException(UserID,Number,"UserID invalido");
-        //        }
         return clientRepository
                 .findById(UserID)
                 .stream()
                 .findFirst()
                 .orElseThrow(() -> new NoSuchElementException("UserId " + UserID + " não encontrado"));
     }
-
 }
