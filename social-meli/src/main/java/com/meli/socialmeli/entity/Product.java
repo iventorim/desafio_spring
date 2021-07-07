@@ -21,6 +21,16 @@ public class Product {
 
     private String notes;
 
+    public Product() {}
+
+    public Product(String productName, String type, String brand, String color, String notes) {
+        this.productName = productName;
+        this.type = type;
+        this.brand = brand;
+        this.color = color;
+        this.notes = notes;
+    }
+
     public void setProductId(Integer id) {
         this.productId = id;
     }

@@ -7,8 +7,16 @@ import java.util.List;
 @Entity
 public class Client extends User {
 
+    public Client(String username) {
+        super(username);
+    }
+
     @ManyToMany(mappedBy = "followers")
     private List<Seller> following;
+
+    public Client() {
+
+    }
 
     public List<Seller> getFollowing() {
         return following;

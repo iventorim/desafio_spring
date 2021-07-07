@@ -28,6 +28,30 @@ public class Post {
     @JoinColumn(name="seller_id")
     private Seller seller;
 
+    public Post(LocalDate date, Product detail, Integer category, Double price, Seller seller) {
+        this.date = date;
+        this.detail = detail;
+        this.category = category;
+        this.price = price;
+        this.seller = seller;
+        this.hasPromo = false;
+        this.discount = 0.0;
+    }
+
+    public Post(LocalDate date, Product detail, Integer category, Double price, boolean hasPromo, Double discount, Seller seller) {
+        this.date = date;
+        this.detail = detail;
+        this.category = category;
+        this.price = price;
+        this.hasPromo = hasPromo;
+        this.discount = discount;
+        this.seller = seller;
+    }
+
+    public Post() {
+
+    }
+
     public LocalDate getDate() {
         return date;
     }

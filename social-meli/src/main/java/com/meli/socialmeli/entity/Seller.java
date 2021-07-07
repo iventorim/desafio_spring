@@ -13,4 +13,12 @@ public class Seller extends User {
             inverseJoinColumns = @JoinColumn(name = "client_id"))
     private List<Client> followers;
 
+    public Seller(String username, List<Client> followers) {
+        super(username);
+        this.followers = followers;
+    }
+
+    public Seller() {
+
+    }
 }

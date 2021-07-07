@@ -27,4 +27,10 @@ public abstract class User {
     public void setUsername(String username) {
         this.username = username;
     }
+
+    public User(String username) {
+        this.username = username;
+    }
+
+    public User() {}
 }
