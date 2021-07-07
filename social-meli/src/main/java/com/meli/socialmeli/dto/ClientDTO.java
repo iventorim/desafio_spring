@@ -1,6 +1,7 @@
 package com.meli.socialmeli.dto;
 
 import com.meli.socialmeli.entity.Client;
+import com.meli.socialmeli.entity.Seller;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -9,11 +10,11 @@ public class ClientDTO {
 
     private String username;
     private Integer userId;
-    private List<SellerDTO> followersDTO;
+    private List<Seller> followersDTO;
 
     // constructors
 
-    public ClientDTO(String username, Integer userId, List<SellerDTO> followersDTO) {
+    public ClientDTO(String username, Integer userId, List<Seller> followersDTO) {
         this.username = username;
         this.userId = userId;
         this.followersDTO = followersDTO;
@@ -22,13 +23,13 @@ public class ClientDTO {
     public ClientDTO(Client client) {
         this.username = client.getUsername();
         this.userId = client.getUserId();
-        this.followersDTO = SellerDTO.converter(client.getFollowing());
+        this.followersDTO = client.getFollowing();
     }
 
     // DTO methods
 
     public static ClientDTO converter(Client client) {
-        return new ClientDTO(client.getUsername(), client.getUserId(), SellerDTO.converter(client.getFollowing()));
+        return new ClientDTO(client.getUsername(), client.getUserId(), client.getFollowing());
     }
 
     public static List<ClientDTO> converter(List<Client> clients) {
@@ -55,11 +56,11 @@ public class ClientDTO {
         this.userId = userId;
     }
 
-    public List<SellerDTO> getSellers() {
+    public List<Seller> getSellers() {
         return followersDTO;
     }
 
-    public void setSellers(List<SellerDTO> followersDTO) {
+    public void setSellers(List<Seller> followersDTO) {
         this.followersDTO = followersDTO;
     }
 }
