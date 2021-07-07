@@ -8,6 +8,7 @@ import com.meli.socialmeli.repository.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,7 +32,13 @@ public class ClientService {
         following
                 .stream()
                 .map(Seller::getPosts)
-                .forEach(postList::addAll);
+                .forEach(posts -> posts
+                        .forEach(p -> {
+                                    if (p.getDate().isAfter(LocalDate.now().minusWeeks(2)))
+                                        postList.add(p);
+                                }
+                        )
+                );
 
         postList.sort((o1, o2) -> {
             if (o1.getDate() == null || o2.getDate() == null) {
