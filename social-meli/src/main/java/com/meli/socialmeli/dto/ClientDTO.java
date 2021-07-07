@@ -33,11 +33,12 @@ public class ClientDTO {
 
     public static List<ClientDTO> converter(List<Client> clients) {
         return clients.stream()
-                .map(ClientDTO::converter)
+                .map(c -> ClientDTO.converter(c))
                 .collect(Collectors.toList());
     }
 
     // getters and setters
+
     public String getUsername() {
         return username;
     }
@@ -58,7 +59,7 @@ public class ClientDTO {
         return followersDTO;
     }
 
-    public void setSellers(List<SellerDTO> sellers) {
-        this.followersDTO = sellers;
+    public void setSellers(List<SellerDTO> followersDTO) {
+        this.followersDTO = followersDTO;
     }
 }

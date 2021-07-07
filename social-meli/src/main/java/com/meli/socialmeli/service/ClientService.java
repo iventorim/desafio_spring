@@ -19,11 +19,24 @@ public class ClientService {
         this.clientRepository = clientRepository;
     }
 
-    public Client findById(Integer UserID) {
-        return clientRepository
-                .findById(UserID)
+    public Client findById(Integer UserID, String order) {
+
+        Client client = clientRepository.findById(UserID)
                 .stream()
                 .findFirst()
                 .orElseThrow(() -> new NoSuchElementException("UserId " + UserID + " não encontrado"));
+
+        if (order != null) {
+            client.getFollowing().sort((o1, o2) -> {
+                if (order.equals("name_asc")) {
+                    return o1.getUsername().compareTo(o2.getUsername());
+                } else if(order.equals("name_desc")){
+                    return o2.getUsername().compareTo(o1.getUsername());
+                }
+                return 0;
+            });
+        }
+        return client;
     }
 }
+
