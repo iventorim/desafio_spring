@@ -107,4 +107,12 @@ public class Post {
     public Integer getIdPost() {
         return idPost;
     }
+
+    public Seller getSeller() {
+        return seller;
+    }
+
+    public void setSeller(Seller seller) {
+        this.seller = seller;
+    }
 }
