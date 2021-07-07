@@ -8,8 +8,6 @@ import com.meli.socialmeli.repository.ClientRepository;
 import com.meli.socialmeli.repository.PostRepository;
 import com.meli.socialmeli.repository.ProductRepository;
 import com.meli.socialmeli.repository.SellerRepository;
-import org.apache.tomcat.jni.Local;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -31,7 +29,7 @@ public class CreatorService {
         this.postRepository = postRepository;
         this.productRepository = productRepository;
         this.sellerRepository = sellerRepository;
-        populateDatabase();
+        // populateDatabase();
     }
 
     public void populateDatabase() {

@@ -1,5 +1,8 @@
 package com.meli.socialmeli.entity;
 
+import org.springframework.lang.NonNull;
+import org.springframework.lang.Nullable;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 
@@ -12,7 +15,7 @@ public class Post {
 
     private LocalDate date;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="productId")
     private Product detail;
 
@@ -24,7 +27,7 @@ public class Post {
 
     private Double discount;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
     @JoinColumn(name="seller_id")
     private Seller seller;
 
@@ -107,4 +110,5 @@ public class Post {
     public Integer getIdPost() {
         return idPost;
     }
+
 }
