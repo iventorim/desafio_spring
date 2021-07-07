@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 public class ConstraintViolationHandler {
 
     @ExceptionHandler(ConstraintViolationException.class)
-    public ResponseEntity<ExceptionDTO> defaualHandler(ConstraintViolationException e){
+    public ResponseEntity<ExceptionDTO> defaultHandler(ConstraintViolationException e){
         return ResponseEntity.badRequest().body(new ExceptionDTO(e.getMessage(),e.getErrorCode()));
     }
 
