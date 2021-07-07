@@ -1,6 +1,7 @@
 package com.meli.socialmeli.entity;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -18,7 +19,24 @@ public class Seller extends User {
         this.followers = followers;
     }
 
-    public Seller() {
+    @OneToMany(targetEntity = Post.class, mappedBy = "seller", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Post> posts = new ArrayList<>();
 
+    public Seller() {}
+
+    public List<Client> getFollowers() {
+        return followers;
+    }
+
+    public void setFollowers(List<Client> followers) {
+        this.followers = followers;
+    }
+
+    public List<Post> getPosts() {
+        return posts;
+    }
+
+    public void setPosts(List<Post> posts) {
+        this.posts = posts;
     }
 }
