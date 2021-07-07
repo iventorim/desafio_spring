@@ -8,9 +8,6 @@ public class UserFollowingPostsDTO {
     private int userId;
     private List<Post> posts;
 
-    public UserFollowingPostsDTO() {
-    }
-
     public UserFollowingPostsDTO(int userId, List<Post> posts) {
         this.userId = userId;
         this.posts = posts;
