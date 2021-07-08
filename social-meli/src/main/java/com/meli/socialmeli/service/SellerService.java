@@ -90,4 +90,8 @@ public class SellerService {
     public void deleteSeller(int userId){
         sellerRepository.deleteById(userId);
     }
+
+    public List<Seller> getSellers(){
+        return sellerRepository.findAll();
+    }
 }

@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.*;
 import com.meli.socialmeli.dto.FollowersListDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.List;
+
 @RestController
 public class SellerController {
 
@@ -46,6 +48,12 @@ public class SellerController {
     @ResponseStatus(HttpStatus.OK)
     public void deleteSeller(@PathVariable int userId){
         sellerService.deleteSeller(userId);
+    }
+
+    @GetMapping("/users/sellers")
+    @ResponseStatus(HttpStatus.OK)
+    public List<Seller> getSellers(){
+        return sellerService.getSellers();
     }
     
 }
