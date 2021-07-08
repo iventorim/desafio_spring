@@ -3,7 +3,6 @@ package com.meli.socialmeli.service;
 import com.meli.socialmeli.entity.Client;
 import com.meli.socialmeli.entity.Post;
 import com.meli.socialmeli.entity.Seller;
-import com.meli.socialmeli.exception.ClientNotFoundException;
 import com.meli.socialmeli.repository.ClientRepository;
 import com.meli.socialmeli.repository.SellerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +29,7 @@ public class ClientService {
 
     public List<Post> getUserFollowingSellersPosts(int userId, String order) {
         Client client = clientRepository.findById(userId)
-                .orElseThrow(() -> new ClientNotFoundException("Cliente " + userId + " não encontrado."));
+                .orElseThrow(() -> new NoSuchElementException("Cliente " + userId + " não encontrado."));
 
         List<Seller> following = client.getFollowing();
         List<Post> postList = new ArrayList<>();
