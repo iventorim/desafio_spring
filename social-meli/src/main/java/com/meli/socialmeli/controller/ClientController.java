@@ -29,9 +29,9 @@ public class ClientController {
         clientService.removeUserFollower(userId, userIdToUnfollow);
     }
 
-    @GetMapping("{UserID}/followed/list")
+    @GetMapping("{userId}/followed/list")
     @ResponseStatus(HttpStatus.OK)
-    private FollowingListDTO whoAmIFollowing(@PathVariable int UserID, @RequestParam(required = false) String order) {
-        return FollowingListDTO.converter(clientService.getUserFollowingSellers(UserID, order));
+    private FollowingListDTO whoAmIFollowing(@PathVariable int userId, @RequestParam(required = false) String order) {
+        return FollowingListDTO.converter(clientService.getUserFollowingSellers(userId, order));
     }
 }
