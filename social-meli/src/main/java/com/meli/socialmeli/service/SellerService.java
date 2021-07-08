@@ -75,4 +75,23 @@ public class SellerService {
         return FollowersListDTO.convert(seller);
 
     }
+
+    public void addSeller(Seller seller){
+        sellerRepository.save(seller);
+    }
+
+    public void updateSeller(int userId, Seller seller){
+        Seller altSeller = sellerRepository.findById(userId)
+                .orElseThrow(() -> new NoSuchElementException("Não foi encontrado nenhum usuário vendedor com o id: " + userId));
+        altSeller.setUsername(seller.getUsername());
+        sellerRepository.save(altSeller);
+    }
+
+    public void deleteSeller(int userId){
+        sellerRepository.deleteById(userId);
+    }
+
+    public List<Seller> getSellers(){
+        return sellerRepository.findAll();
+    }
 }
