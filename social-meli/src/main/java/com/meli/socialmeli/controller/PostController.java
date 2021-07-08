@@ -18,9 +18,8 @@ public class PostController {
         this.postService = postService;
     }
 
-    @PostMapping("/products/newpost")
-    public void save(@RequestBody PostForm postForm){
+    @PostMapping(value = {"/products/newpost", "/products/newpromopost"})
+    public void save(@RequestBody PostForm postForm) {
         postService.save(postForm);
     }
-
 }

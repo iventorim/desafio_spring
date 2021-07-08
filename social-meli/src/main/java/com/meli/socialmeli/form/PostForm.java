@@ -15,6 +15,8 @@ public class PostForm {
     private Integer category;
     private Double price;
     private Seller seller;
+    private boolean hasPromo = false;
+    private double discount = 0.00;
 
     public PostForm() {
     }
@@ -27,6 +29,19 @@ public class PostForm {
         this.category = category;
         this.price = price;
         this.seller = seller;
+    }
+
+    public PostForm(Integer userId, Integer id_post, LocalDate date, Product detail, Integer category, Double price,
+                    Seller seller, boolean hasPromo, double discount) {
+        this.userId = userId;
+        this.id_post = id_post;
+        this.date = date;
+        this.detail = detail;
+        this.category = category;
+        this.price = price;
+        this.seller = seller;
+        this.hasPromo = hasPromo;
+        this.discount = discount;
     }
 
     // Getter Methods
@@ -55,27 +70,27 @@ public class PostForm {
         return price;
     }
 
-    public void setUserId( Integer userId ) {
+    public void setUserId(Integer userId) {
         this.userId = userId;
     }
 
-    public void setId_post( Integer id_post ) {
+    public void setId_post(Integer id_post) {
         this.id_post = id_post;
     }
 
-    public void setDate(LocalDate date ) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 
-    public void setDetail( Product detail ) {
+    public void setDetail(Product detail) {
         this.detail = detail;
     }
 
-    public void setCategory( Integer category ) {
+    public void setCategory(Integer category) {
         this.category = category;
     }
 
-    public void setPrice(Double price ) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 
@@ -87,7 +102,23 @@ public class PostForm {
         this.seller = seller;
     }
 
-    public static Post convert(PostForm postForm){
+    public boolean isHasPromo() {
+        return hasPromo;
+    }
+
+    public void setHasPromo(boolean hasPromo) {
+        this.hasPromo = hasPromo;
+    }
+
+    public double getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(double discount) {
+        this.discount = discount;
+    }
+
+    public static Post convert(PostForm postForm) {
         return new Post(postForm.date, postForm.getDetail(), postForm.getCategory(), postForm.getPrice(), postForm.getSeller());
     }
 }
