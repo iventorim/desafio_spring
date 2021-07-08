@@ -41,4 +41,11 @@ public class SellerController {
     public void updateSeller(@PathVariable int userId, @RequestBody Seller seller){
         sellerService.updateSeller(userId, seller);
     }
+
+    @DeleteMapping("/users/{userId}/delete")
+    @ResponseStatus(HttpStatus.OK)
+    public void deleteSeller(@PathVariable int userId){
+        sellerService.deleteSeller(userId);
+    }
+    
 }

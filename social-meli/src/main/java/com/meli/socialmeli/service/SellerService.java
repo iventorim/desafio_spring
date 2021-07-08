@@ -86,4 +86,8 @@ public class SellerService {
         altSeller.setUsername(seller.getUsername());
         sellerRepository.save(altSeller);
     }
+
+    public void deleteSeller(int userId){
+        sellerRepository.deleteById(userId);
+    }
 }
