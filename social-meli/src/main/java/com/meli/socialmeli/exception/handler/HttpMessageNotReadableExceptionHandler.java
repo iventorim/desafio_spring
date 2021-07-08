@@ -15,6 +15,6 @@ public class HttpMessageNotReadableExceptionHandler {
     public ResponseEntity<ExceptionDTO> defaultHandler(HttpMessageNotReadableException e) {
         return ResponseEntity
                 .status(HttpStatus.BAD_REQUEST)
-                .body(new ExceptionDTO("O corpo da requisição não pode ser vazio.", HttpStatus.BAD_REQUEST.value()));
+                .body(new ExceptionDTO("Requisição mal formatada.", HttpStatus.BAD_REQUEST.value()));
     }
 }
