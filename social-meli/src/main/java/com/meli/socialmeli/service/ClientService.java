@@ -27,6 +27,24 @@ public class ClientService {
         this.sellerRepository = sellerRepository;
     }
 
+    public Client getUserFollowingSellers(int UserID, String order) {
+
+        Client client = clientRepository.findById(UserID)
+                .orElseThrow(() -> new NoSuchElementException("UserId " + UserID + " não encontrado"));
+
+        if (order != null) {
+            client.getFollowing().sort((o1, o2) -> {
+                if (order.equals("name_asc")) {
+                    return o1.getUsername().compareTo(o2.getUsername());
+                } else if (order.equals("name_desc")) {
+                    return o2.getUsername().compareTo(o1.getUsername());
+                }
+                return 0;
+            });
+        }
+        return client;
+    }
+
     public List<Post> getUserFollowingSellersPosts(int userId, String order) {
         Client client = clientRepository.findById(userId)
                 .orElseThrow(() -> new NoSuchElementException("Cliente " + userId + " não encontrado."));
@@ -58,24 +76,6 @@ public class ClientService {
         });
 
         return postList;
-    }
-
-    public Client findById(Integer UserID, String order) {
-
-        Client client = clientRepository.findById(UserID)
-                .orElseThrow(() -> new NoSuchElementException("UserId " + UserID + " não encontrado"));
-
-        if (order != null) {
-            client.getFollowing().sort((o1, o2) -> {
-                if (order.equals("name_asc")) {
-                    return o1.getUsername().compareTo(o2.getUsername());
-                } else if (order.equals("name_desc")) {
-                    return o2.getUsername().compareTo(o1.getUsername());
-                }
-                return 0;
-            });
-        }
-        return client;
     }
 
     public void addUserFollower(int userId, int userIdToFollow) {

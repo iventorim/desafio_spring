@@ -30,7 +30,7 @@ public class ClientController {
 
     @GetMapping("/users/{UserID}/followed/list")
     @ResponseStatus(HttpStatus.OK)
-    private FollowingListDTO whoAmIFollowing(@PathVariable Integer UserID, @RequestParam(required = false) String order) {
-        return FollowingListDTO.converter(clientService.findById(UserID, order));
+    private FollowingListDTO whoAmIFollowing(@PathVariable int UserID, @RequestParam(required = false) String order) {
+        return FollowingListDTO.converter(clientService.getUserFollowingSellers(UserID, order));
     }
 }
