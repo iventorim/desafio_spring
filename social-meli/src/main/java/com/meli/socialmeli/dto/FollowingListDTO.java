@@ -6,7 +6,7 @@ import com.meli.socialmeli.entity.Seller;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class ClientDTO {
+public class FollowingListDTO {
 
     private String username;
     private Integer userId;
@@ -14,13 +14,13 @@ public class ClientDTO {
 
     // constructors
 
-    public ClientDTO(String username, Integer userId, List<Seller> followed) {
+    public FollowingListDTO(String username, Integer userId, List<Seller> followed) {
         this.username = username;
         this.userId = userId;
         this.followed = followed;
     }
 
-    public ClientDTO(Client client) {
+    public FollowingListDTO(Client client) {
         this.username = client.getUsername();
         this.userId = client.getUserId();
         this.followed = client.getFollowing();
@@ -28,13 +28,13 @@ public class ClientDTO {
 
     // DTO methods
 
-    public static ClientDTO converter(Client client) {
-        return new ClientDTO(client.getUsername(), client.getUserId(), client.getFollowing());
+    public static FollowingListDTO converter(Client client) {
+        return new FollowingListDTO(client.getUsername(), client.getUserId(), client.getFollowing());
     }
 
-    public static List<ClientDTO> converter(List<Client> clients) {
+    public static List<FollowingListDTO> converter(List<Client> clients) {
         return clients.stream()
-                .map(c -> ClientDTO.converter(c))
+                .map(FollowingListDTO::converter)
                 .collect(Collectors.toList());
     }
 

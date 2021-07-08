@@ -1,6 +1,6 @@
 package com.meli.socialmeli.controller;
 
-import com.meli.socialmeli.dto.ClientDTO;
+import com.meli.socialmeli.dto.FollowingListDTO;
 import com.meli.socialmeli.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -30,7 +30,7 @@ public class ClientController {
 
     @GetMapping("/users/{UserID}/followed/list")
     @ResponseStatus(HttpStatus.OK)
-    private ClientDTO whoAmIFollowing(@PathVariable Integer UserID, @RequestParam(required = false) String order) {
-        return ClientDTO.converter(clientService.findById(UserID, order));
+    private FollowingListDTO whoAmIFollowing(@PathVariable Integer UserID, @RequestParam(required = false) String order) {
+        return FollowingListDTO.converter(clientService.findById(UserID, order));
     }
 }

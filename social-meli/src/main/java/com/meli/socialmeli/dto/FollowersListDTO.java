@@ -4,15 +4,14 @@ import com.meli.socialmeli.entity.Client;
 import com.meli.socialmeli.entity.Seller;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
-public class FollowersDTO {
+public class FollowersListDTO {
 
     private Integer userId;
     private String username;
     private List<Client> followers;
 
-    public FollowersDTO(Integer userId, String username, List<Client> followers) {
+    public FollowersListDTO(Integer userId, String username, List<Client> followers) {
         this.userId = userId;
         this.username = username;
         this.followers = followers;
@@ -30,8 +29,8 @@ public class FollowersDTO {
         return followers;
     }
 
-    public static FollowersDTO convert(Seller seller){
-        return new FollowersDTO(seller.getUserId(),
+    public static FollowersListDTO convert(Seller seller) {
+        return new FollowersListDTO(seller.getUserId(),
                 seller.getUsername(),
                 seller.getFollowers()
         );

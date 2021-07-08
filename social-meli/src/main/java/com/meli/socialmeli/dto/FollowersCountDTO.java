@@ -2,7 +2,7 @@ package com.meli.socialmeli.dto;
 
 import com.meli.socialmeli.entity.Seller;
 
-public class FollowersSellerDTO {
+public class FollowersCountDTO {
 
     private final Integer userId;
 
@@ -10,20 +10,20 @@ public class FollowersSellerDTO {
 
     private final Integer followers_count;
 
-    public FollowersSellerDTO(Integer userId, String userName, Integer followers_count) {
+    public FollowersCountDTO(Integer userId, String userName, Integer followers_count) {
         this.userId = userId;
         this.userName = userName;
         this.followers_count = followers_count;
     }
 
-    public FollowersSellerDTO(Seller seller) {
+    public FollowersCountDTO(Seller seller) {
         this.userId = seller.getUserId();
         this.userName = seller.getUsername();
         this.followers_count = seller.getFollowers().size();
     }
 
-    public static FollowersSellerDTO convert(Seller seller) {
-        return new FollowersSellerDTO(seller);
+    public static FollowersCountDTO convert(Seller seller) {
+        return new FollowersCountDTO(seller);
     }
 
     public Integer getUserId() {
