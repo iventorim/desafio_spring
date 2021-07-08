@@ -13,6 +13,9 @@ public class EntityNotFoundHandler {
 
     @ExceptionHandler(EntityNotFoundException.class)
     public ResponseEntity<ExceptionDTO> defaultHandler(EntityNotFoundException e){
-        return ResponseEntity.badRequest().body( new ExceptionDTO(e.getMessage(), HttpStatus.NOT_FOUND.value()));
+
+        String msg = "Id não foi encontrado, para o elemento buscado.";
+
+        return ResponseEntity.badRequest().body( new ExceptionDTO(msg, HttpStatus.NOT_FOUND.value()));
     }
 }
