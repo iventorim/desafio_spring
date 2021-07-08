@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -27,14 +26,10 @@ public class SellerService {
 
     public CountPromoSellerDTO getCountPostPromoSeller(Integer idSeller) {
 
-        Optional<Seller> optionalSeller = sellerRepository.findById(idSeller);
-        if(optionalSeller.isPresent()) {
-            Seller seller = optionalSeller.get();
-            List<Post> postsSellerPromotions = this.getPostsSellerPromotions(seller);
-            return new CountPromoSellerDTO(seller.getUserId(),seller.getUsername(),postsSellerPromotions.size());
-        }
-
-        throw new NoSuchElementException("Não foi encontrado nenhum usuário vendedor com o id: "+idSeller);
+        Seller seller = sellerRepository.findById(idSeller)
+                .orElseThrow(() -> new NoSuchElementException("Não foi encontrado nenhum usuário vendedor com o id: "+idSeller));
+        List<Post> postsSellerPromotions = this.getPostsSellerPromotions(seller);
+        return new CountPromoSellerDTO(seller.getUserId(),seller.getUsername(),postsSellerPromotions.size());
     }
 
     private List<Post> getPostsSellerPromotions(Seller seller) {
@@ -47,26 +42,18 @@ public class SellerService {
 
     public ListPromoProdSellerDTO getListPromoProdSeller(Integer idSeller) {
 
-        Optional<Seller> optionalSeller = sellerRepository.findById(idSeller);
+        Seller seller = sellerRepository.findById(idSeller).orElseThrow(() -> new NoSuchElementException("Não foi encontrado nenhum usuário vendedor com o id: " + idSeller));
 
-        if (optionalSeller.isPresent()) {
-            Seller seller = optionalSeller.get();
-            List<Post> postsSellerPromotions = this.getPostsSellerPromotions(seller);
-            return new ListPromoProdSellerDTO(seller.getUserId(), seller.getUsername(), postsSellerPromotions);
-        }
-
-        throw new NoSuchElementException("Não foi encontrado nenhum usuário vendedor com o id: " + idSeller);
+        List<Post> postsSellerPromotions = this.getPostsSellerPromotions(seller);
+        return new ListPromoProdSellerDTO(seller.getUserId(), seller.getUsername(), postsSellerPromotions);
     }
 
     public FollowersSellerDTO getFollowersSellerCount(Integer sellerId) {
 
-        Optional<Seller> optionalSeller = sellerRepository.findById(sellerId);
+        Seller seller = sellerRepository.findById(sellerId)
+                .orElseThrow(() -> new NoSuchElementException("Não foi encontrado nenhum usuário vendedor com o id: "+sellerId));
 
-        if(optionalSeller.isPresent()) {
-            return FollowersSellerDTO.convert(optionalSeller.get());
-        }
-
-        throw new NoSuchElementException("Não foi encontrado nenhum usuário vendedor com o id: "+sellerId);
+        return FollowersSellerDTO.convert(seller);
     }
 
     public FollowersDTO getFollowers(Integer userID) {
