@@ -72,7 +72,21 @@ public class SellerService {
         return FollowersCountDTO.convert(seller);
     }
 
-    public FollowersListDTO getFollowers(Integer userID) {
-        return FollowersListDTO.convert(sellerRepository.getById(userID));
+    public FollowersListDTO getFollowers(Integer userId,String order) {
+
+        Seller seller = sellerRepository.findById(userId)
+                .orElseThrow(() -> new NoSuchElementException("Não foi encontrado nenhum usuário vendedor com o id: " + userId));
+
+        seller.getFollowers().sort((s1, s2) -> {
+            if ("name_asc".equals(order)) {
+                return s1.getUsername().compareToIgnoreCase(s2.getUsername());
+            } else if ("name_desc".equals(order)) {
+                return s2.getUsername().compareToIgnoreCase(s1.getUsername());
+            }
+            return 0;
+        });
+
+        return FollowersListDTO.convert(seller);
+
     }
 }
