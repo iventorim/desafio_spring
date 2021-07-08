@@ -1,5 +1,7 @@
 package com.meli.socialmeli.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import java.util.List;
@@ -18,6 +20,7 @@ public class Client extends User {
 
     }
 
+    @JsonIgnore
     public List<Seller> getFollowing() {
         return following;
     }

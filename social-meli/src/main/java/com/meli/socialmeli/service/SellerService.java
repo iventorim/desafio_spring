@@ -1,6 +1,8 @@
 package com.meli.socialmeli.service;
 
 import com.meli.socialmeli.dto.CountPromoSellerDTO;
+import com.meli.socialmeli.dto.FollowersDTO;
+import com.meli.socialmeli.dto.FollowersSellerDTO;
 import com.meli.socialmeli.dto.ListPromoProdSellerDTO;
 import com.meli.socialmeli.entity.Post;
 import com.meli.socialmeli.entity.Seller;
@@ -47,12 +49,27 @@ public class SellerService {
 
         Optional<Seller> optionalSeller = sellerRepository.findById(idSeller);
 
-        if(optionalSeller.isPresent()) {
+        if (optionalSeller.isPresent()) {
             Seller seller = optionalSeller.get();
             List<Post> postsSellerPromotions = this.getPostsSellerPromotions(seller);
             return new ListPromoProdSellerDTO(seller.getUserId(), seller.getUsername(), postsSellerPromotions);
         }
 
-        throw new NoSuchElementException("Não foi encontrado nenhum usuário vendedor com o id: "+idSeller);
+        throw new NoSuchElementException("Não foi encontrado nenhum usuário vendedor com o id: " + idSeller);
+    }
+
+    public FollowersSellerDTO getFollowersSellerCount(Integer sellerId) {
+
+        Optional<Seller> optionalSeller = sellerRepository.findById(sellerId);
+
+        if(optionalSeller.isPresent()) {
+            return FollowersSellerDTO.convert(optionalSeller.get());
+        }
+
+        throw new NoSuchElementException("Não foi encontrado nenhum usuário vendedor com o id: "+sellerId);
+    }
+
+    public FollowersDTO getFollowers(Integer userID) {
+        return FollowersDTO.convert(sellerRepository.getById(userID));
     }
 }
