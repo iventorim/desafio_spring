@@ -10,20 +10,20 @@ public class ClientDTO {
 
     private String username;
     private Integer userId;
-    private List<Seller> followersDTO;
+    private List<Seller> followed;
 
     // constructors
 
-    public ClientDTO(String username, Integer userId, List<Seller> followersDTO) {
+    public ClientDTO(String username, Integer userId, List<Seller> followed) {
         this.username = username;
         this.userId = userId;
-        this.followersDTO = followersDTO;
+        this.followed = followed;
     }
 
     public ClientDTO(Client client) {
         this.username = client.getUsername();
         this.userId = client.getUserId();
-        this.followersDTO = client.getFollowing();
+        this.followed = client.getFollowing();
     }
 
     // DTO methods
@@ -56,11 +56,11 @@ public class ClientDTO {
         this.userId = userId;
     }
 
-    public List<Seller> getSellers() {
-        return followersDTO;
+    public List<Seller> getFollowed() {
+        return followed;
     }
 
-    public void setSellers(List<Seller> followersDTO) {
-        this.followersDTO = followersDTO;
+    public void setFollowed(List<Seller> followed) {
+        this.followed = followed;
     }
 }
