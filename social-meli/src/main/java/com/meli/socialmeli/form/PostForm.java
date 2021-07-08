@@ -1,5 +1,6 @@
 package com.meli.socialmeli.form;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.meli.socialmeli.entity.Post;
 import com.meli.socialmeli.entity.Product;
 import com.meli.socialmeli.entity.Seller;
@@ -10,6 +11,7 @@ public class PostForm {
 
     private Integer userId;
     private Integer id_post;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     private LocalDate date;
     private Product detail;
     private Integer category;
