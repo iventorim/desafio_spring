@@ -31,5 +31,10 @@ build/
 
 ### VS Code ###
 .vscode/
+
 ### banco ###
 *.mv.db
+
+
+src/main/resources/database/
+

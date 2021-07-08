@@ -35,13 +35,13 @@ public class ProductController {
 
     @GetMapping("{userId}/countPromo")
     @ResponseStatus(HttpStatus.OK)
-    public CountPromoSellerDTO getCountPromoSeller(@PathVariable Integer userId) {
+    public CountPromoSellerDTO getCountPromoSeller(@PathVariable int userId) {
         return sellerService.getCountPostPromoSeller(userId);
     }
 
     @GetMapping("{userId}/list")
     @ResponseStatus(HttpStatus.OK)
-    public ListPromoProdSellerDTO getListPromoProdSeller(@PathVariable Integer userId, @RequestParam(required = false) String order) {
+    public ListPromoProdSellerDTO getListPromoProdSeller(@PathVariable int userId, @RequestParam(required = false) String order) {
         return sellerService.getListPromoProdSeller(userId, order);
     }
 

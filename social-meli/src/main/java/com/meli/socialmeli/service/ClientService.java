@@ -27,25 +27,18 @@ public class ClientService {
         this.sellerRepository = sellerRepository;
     }
 
-    public Client getUserFollowingSellers(int UserID, String order) {
+    public Client getUserFollowingSellers(int userId, String order) {
 
-        Client client = clientRepository.findById(UserID)
-                .orElseThrow(() -> new NoSuchElementException("UserId " + UserID + " não encontrado"));
+        Client client = clientRepository.findById(userId)
+                .orElseThrow(() -> new NoSuchElementException("Não foi encontrado nenhum usuário cliente com o id: " + userId));
 
-        client.getFollowing().sort((o1, o2) -> {
-            if ("name_asc".equals(order)) {
-                return o1.getUsername().compareTo(o2.getUsername());
-            } else if ("name_desc".equals(order)) {
-                return o2.getUsername().compareTo(o1.getUsername());
-            }
-            return 0;
-        });
+        client.getFollowing().sort((c1, c2) -> new StringComparator(order).compare(c1.getUsername(),c2.getUsername()));
         return client;
     }
 
     public List<Post> getUserFollowingSellersPosts(int userId, String order) {
         Client client = clientRepository.findById(userId)
-                .orElseThrow(() -> new NoSuchElementException("Cliente " + userId + " não encontrado."));
+                .orElseThrow(() -> new NoSuchElementException("Não foi encontrado nenhum usuário cliente com o id: " + userId));
 
         List<Seller> following = client.getFollowing();
         List<Post> postList = new ArrayList<>();
@@ -78,9 +71,9 @@ public class ClientService {
 
     public void addUserFollower(int userId, int userIdToFollow) {
         Client client = clientRepository.findById(userId)
-                .orElseThrow(() -> new NoSuchElementException("Cliente " + userId + " não encontrado."));
+                .orElseThrow(() -> new NoSuchElementException("Não foi encontrado nenhum usuário cliente com o id: " + userId));
         Seller seller = sellerRepository.findById(userIdToFollow)
-                .orElseThrow(() -> new NoSuchElementException("UserId " + userIdToFollow + " não encontrado"));
+                .orElseThrow(() -> new NoSuchElementException("Não foi encontrado nenhum usuário vendedor com o id: " + userIdToFollow));
         boolean alreadyExists = seller.getFollowers().stream().anyMatch(c -> c == client);
         if (alreadyExists) {
             throw new HttpClientErrorException(HttpStatus.BAD_REQUEST, "Registro já existe.");
@@ -92,9 +85,9 @@ public class ClientService {
 
     public void removeUserFollower(int userId, int userIdToUnfollow) {
         Client client = clientRepository.findById(userId)
-                .orElseThrow(() -> new NoSuchElementException("Cliente " + userId + " não encontrado."));
+                .orElseThrow(() -> new NoSuchElementException("Não foi encontrado nenhum usuário cliente com o id: " + userId));
         Seller seller = sellerRepository.findById(userIdToUnfollow)
-                .orElseThrow(() -> new NoSuchElementException("UserId " + userIdToUnfollow + " não encontrado"));
+                .orElseThrow(() -> new NoSuchElementException("Não foi encontrado nenhum usuário vendedor com o id: " + userIdToUnfollow));
         boolean alreadyExists = seller.getFollowers().stream().anyMatch(c -> c == client);
         if (!alreadyExists) {
             throw new HttpClientErrorException(HttpStatus.BAD_REQUEST, "Registro não existe.");
