@@ -33,16 +33,16 @@ public class ProductController {
         this.clientService = clientService;
     }
 
-    @GetMapping("products/{userId}/countPromo")
+    @GetMapping("{userId}/countPromo")
     @ResponseStatus(HttpStatus.OK)
     public CountPromoSellerDTO getCountPromoSeller(@PathVariable Integer userId) {
         return sellerService.getCountPostPromoSeller(userId);
     }
 
-    @GetMapping("products/{userId}/list")
+    @GetMapping("{userId}/list")
     @ResponseStatus(HttpStatus.OK)
-    public ListPromoProdSellerDTO getListPromoProdSeller(@PathVariable Integer userId) {
-        return sellerService.getListPromoProdSeller(userId);
+    public ListPromoProdSellerDTO getListPromoProdSeller(@PathVariable Integer userId, @RequestParam(required = false) String order) {
+        return sellerService.getListPromoProdSeller(userId, order);
     }
 
     @GetMapping("/followed/{userId}/list")
