@@ -32,14 +32,7 @@ public class ClientService {
         Client client = clientRepository.findById(userId)
                 .orElseThrow(() -> new NoSuchElementException("Não foi encontrado nenhum usuário cliente com o id: " + userId));
 
-        client.getFollowing().sort((o1, o2) -> {
-            if ("name_asc".equals(order)) {
-                return o1.getUsername().compareTo(o2.getUsername());
-            } else if ("name_desc".equals(order)) {
-                return o2.getUsername().compareTo(o1.getUsername());
-            }
-            return 0;
-        });
+        client.getFollowing().sort((c1, c2) -> new StringComparator(order).compare(c1.getUsername(),c2.getUsername()));
         return client;
     }
 

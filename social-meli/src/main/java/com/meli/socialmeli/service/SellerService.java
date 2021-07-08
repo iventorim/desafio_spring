@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service
@@ -52,14 +51,8 @@ public class SellerService {
 
     private List<Post> sortListPostPromotionsSeller(List<Post> postsSellerPromotions, String order) {
 
-        postsSellerPromotions.sort((p1, p2) -> {
-            if ("name_asc".equals(order)) {
-                return p2.getDetail().getProductName().compareToIgnoreCase(p1.getDetail().getProductName());
-            } else if ("name_desc".equals(order)) {
-                return p1.getDetail().getProductName().compareToIgnoreCase(p2.getDetail().getProductName());
-            }
-            return 0;
-        });
+        postsSellerPromotions.sort((p1, p2) ->
+                new StringComparator(order).compare(p1.getDetail().getProductName(),p2.getDetail().getProductName()));
 
         return postsSellerPromotions;
     }
@@ -77,14 +70,7 @@ public class SellerService {
         Seller seller = sellerRepository.findById(userId)
                 .orElseThrow(() -> new NoSuchElementException("Não foi encontrado nenhum usuário vendedor com o id: " + userId));
 
-        seller.getFollowers().sort((s1, s2) -> {
-            if ("name_asc".equals(order)) {
-                return s1.getUsername().compareToIgnoreCase(s2.getUsername());
-            } else if ("name_desc".equals(order)) {
-                return s2.getUsername().compareToIgnoreCase(s1.getUsername());
-            }
-            return 0;
-        });
+        seller.getFollowers().sort((s1, s2) -> new StringComparator(order).compare(s1.getUsername(),s2.getUsername()));
 
         return FollowersListDTO.convert(seller);
 
