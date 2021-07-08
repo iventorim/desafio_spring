@@ -1,6 +1,5 @@
 package com.meli.socialmeli.controller;
 
-import com.meli.socialmeli.entity.Post;
 import com.meli.socialmeli.form.PostForm;
 import com.meli.socialmeli.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;

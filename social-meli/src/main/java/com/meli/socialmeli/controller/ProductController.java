@@ -45,7 +45,7 @@ public class ProductController {
         return sellerService.getListPromoProdSeller(userId, order);
     }
 
-    @GetMapping("/followed/{userId}/list")
+    @GetMapping("followed/{userId}/list")
     @ResponseStatus(HttpStatus.OK)
     public UserFollowingPostsDTO listSellersPostsByUserId(@PathVariable int userId, @RequestParam(required = false) String order) {
         List<Post> posts = clientService.getUserFollowingSellersPosts(userId, order);

@@ -4,7 +4,6 @@ import com.meli.socialmeli.entity.Seller;
 import com.meli.socialmeli.form.PostForm;
 import com.meli.socialmeli.repository.PostRepository;
 import com.meli.socialmeli.repository.SellerRepository;
-import org.hibernate.NonUniqueObjectException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

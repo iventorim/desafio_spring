@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequestMapping("/users")
 public class ClientController {
 
     private final ClientService clientService;
@@ -16,19 +17,19 @@ public class ClientController {
         this.clientService = clientService;
     }
 
-    @PostMapping("/users/{userId}/follow/{userIdToFollow}")
+    @PostMapping("{userId}/follow/{userIdToFollow}")
     @ResponseStatus(HttpStatus.OK)
-    public void addFollower(@PathVariable int userId, @PathVariable int userIdToFollow){
+    public void addFollower(@PathVariable int userId, @PathVariable int userIdToFollow) {
         clientService.addUserFollower(userId, userIdToFollow);
     }
 
-    @PostMapping("/users/{userId}/unfollow/{userIdToUnfollow}")
+    @PostMapping("{userId}/unfollow/{userIdToUnfollow}")
     @ResponseStatus(HttpStatus.OK)
-    public void removeFollower(@PathVariable int userId, @PathVariable int userIdToUnfollow){
+    public void removeFollower(@PathVariable int userId, @PathVariable int userIdToUnfollow) {
         clientService.removeUserFollower(userId, userIdToUnfollow);
     }
 
-    @GetMapping("/users/{UserID}/followed/list")
+    @GetMapping("{UserID}/followed/list")
     @ResponseStatus(HttpStatus.OK)
     private FollowingListDTO whoAmIFollowing(@PathVariable int UserID, @RequestParam(required = false) String order) {
         return FollowingListDTO.converter(clientService.getUserFollowingSellers(UserID, order));

@@ -24,7 +24,6 @@ public class SellerController {
     @GetMapping("/users/{userId}/followers/count")
     @ResponseStatus(value = HttpStatus.OK)
     public FollowersCountDTO getFollowersSellerCount(@PathVariable Integer userId) {
-
         return sellerService.getFollowersSellerCount(userId);
     }
 
