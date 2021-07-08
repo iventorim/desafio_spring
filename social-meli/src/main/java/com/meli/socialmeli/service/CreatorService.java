@@ -86,8 +86,8 @@ public class CreatorService {
                 new Post(LocalDate.of(2021, 7,1), products.get(0), 100, 400.00, sellers.get(1)),
                 new Post(LocalDate.of(2021, 7,2), products.get(2), 100, 4500.00, sellers.get(2)),
                 new Post(LocalDate.of(2021, 7,3), products.get(3), 110, 2000.00, sellers.get(0)),
-                new Post(LocalDate.of(2021, 6,1), products.get(4), 200, 300000.00, sellers.get(0)),
-                new Post(LocalDate.of(2021, 5,3), products.get(3), 110, 2330.00, sellers.get(0))
+                new Post(LocalDate.of(2021, 6,1), products.get(4), 200,  300000.00, true, 0.1, sellers.get(0)),
+                new Post(LocalDate.of(2021, 5,3), products.get(3), 110, 2330.00, true, 0.4, sellers.get(0))
         );
         posts.forEach(postRepository::save);
         return posts;
