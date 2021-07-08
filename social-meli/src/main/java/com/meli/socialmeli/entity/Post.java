@@ -1,7 +1,5 @@
 package com.meli.socialmeli.entity;
-
-import org.springframework.lang.NonNull;
-import org.springframework.lang.Nullable;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -13,6 +11,7 @@ public class Post {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idPost;
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     private LocalDate date;
 
     @ManyToOne(cascade = CascadeType.ALL)
@@ -51,9 +50,7 @@ public class Post {
         this.seller = seller;
     }
 
-    public Post() {
-
-    }
+    public Post() {}
 
     public LocalDate getDate() {
         return date;
@@ -109,6 +106,14 @@ public class Post {
 
     public Integer getIdPost() {
         return idPost;
+    }
+
+    public Seller getSeller() {
+        return seller;
+    }
+
+    public void setSeller(Seller seller) {
+        this.seller = seller;
     }
 
 }
