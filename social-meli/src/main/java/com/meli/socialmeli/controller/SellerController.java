@@ -1,14 +1,12 @@
 package com.meli.socialmeli.controller;
 
 import com.meli.socialmeli.dto.FollowersCountDTO;
+import com.meli.socialmeli.entity.Seller;
 import com.meli.socialmeli.service.SellerService;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.*;
 import com.meli.socialmeli.dto.FollowersListDTO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class SellerController {
@@ -32,4 +30,9 @@ public class SellerController {
         return sellerService.getFollowers(userID);
     }
 
+    @PostMapping("/users/newseller")
+    @ResponseStatus(HttpStatus.OK)
+    public void newSeller(@RequestBody Seller seller){
+        sellerService.addSeller(seller);
+    }
 }

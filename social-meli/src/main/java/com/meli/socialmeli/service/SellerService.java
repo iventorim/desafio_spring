@@ -75,4 +75,8 @@ public class SellerService {
     public FollowersListDTO getFollowers(Integer userID) {
         return FollowersListDTO.convert(sellerRepository.getById(userID));
     }
+
+    public void addSeller(Seller seller){
+        sellerRepository.save(seller);
+    }
 }
