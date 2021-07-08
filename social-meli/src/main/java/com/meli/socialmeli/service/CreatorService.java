@@ -29,7 +29,6 @@ public class CreatorService {
         this.postRepository = postRepository;
         this.productRepository = productRepository;
         this.sellerRepository = sellerRepository;
-        // populateDatabase();
     }
 
     public void populateDatabase() {
