@@ -4,8 +4,11 @@ import com.meli.socialmeli.entity.Seller;
 import com.meli.socialmeli.form.PostForm;
 import com.meli.socialmeli.repository.PostRepository;
 import com.meli.socialmeli.repository.SellerRepository;
+import org.hibernate.NonUniqueObjectException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.NoSuchElementException;
 
 @Service
 public class PostService {
@@ -21,7 +24,8 @@ public class PostService {
 
     public void save(PostForm postForm){
 
-        Seller seller = sellerRepository.getById(postForm.getUserId());
+        Seller seller = sellerRepository.findById(postForm.getUserId())
+                .orElseThrow(() -> new NoSuchElementException("Vendedor com id: " + postForm.getUserId() + ", não encontrado"));
         postForm.setSeller(seller);
         postRepository.save(PostForm.convert(postForm));
 

@@ -64,8 +64,6 @@ public class ClientService {
     public Client findById(Integer UserID, String order) {
 
         Client client = clientRepository.findById(UserID)
-                .stream()
-                .findFirst()
                 .orElseThrow(() -> new NoSuchElementException("UserId " + UserID + " não encontrado"));
 
         if (order != null) {
