@@ -79,34 +79,30 @@ public class ClientService {
     }
 
     public void addUserFollower(int userId, int userIdToFollow) {
-        if (!sellerRepository.existsById(userIdToFollow) || !clientRepository.existsById(userId)) {
-            throw new HttpClientErrorException(HttpStatus.BAD_REQUEST, "Cliente ou vendedor não existe.");
+        Client client = clientRepository.findById(userId)
+                .orElseThrow(() -> new NoSuchElementException("Cliente " + userId + " não encontrado."));
+        Seller seller = sellerRepository.findById(userIdToFollow)
+                .orElseThrow(() -> new NoSuchElementException("UserId " + userIdToFollow + " não encontrado"));
+        boolean alreadyExists = seller.getFollowers().stream().anyMatch(c -> c == client);
+        if (alreadyExists) {
+            throw new HttpClientErrorException(HttpStatus.BAD_REQUEST, "Registro já existe.");
         } else {
-            Seller seller = sellerRepository.getById(userIdToFollow);
-            Client client = clientRepository.getById(userId);
-            boolean alreadyExists = seller.getFollowers().stream().anyMatch(c -> c == client);
-            if (alreadyExists) {
-                throw new HttpClientErrorException(HttpStatus.BAD_REQUEST, "Registro já existe.");
-            } else {
-                seller.addFollower(client);
-                sellerRepository.save(seller);
-            }
+            seller.addFollower(client);
+            sellerRepository.save(seller);
         }
     }
 
     public void removeUserFollower(int userId, int userIdToUnfollow) {
-        if (!sellerRepository.existsById(userIdToUnfollow) || !clientRepository.existsById(userId)) {
-            throw new HttpClientErrorException(HttpStatus.BAD_REQUEST, "Cliente ou vendedor não existe.");
+        Client client = clientRepository.findById(userId)
+                .orElseThrow(() -> new NoSuchElementException("Cliente " + userId + " não encontrado."));
+        Seller seller = sellerRepository.findById(userIdToUnfollow)
+                .orElseThrow(() -> new NoSuchElementException("UserId " + userIdToUnfollow + " não encontrado"));
+        boolean alreadyExists = seller.getFollowers().stream().anyMatch(c -> c == client);
+        if (!alreadyExists) {
+            throw new HttpClientErrorException(HttpStatus.BAD_REQUEST, "Registro não existe.");
         } else {
-            Seller seller = sellerRepository.getById(userIdToUnfollow);
-            Client client = clientRepository.getById(userId);
-            boolean alreadyExists = seller.getFollowers().stream().anyMatch(c -> c == client);
-            if (!alreadyExists) {
-                throw new HttpClientErrorException(HttpStatus.BAD_REQUEST, "Registro não existe.");
-            } else {
-                seller.removeFollower(client);
-                sellerRepository.save(seller);
-            }
+            seller.removeFollower(client);
+            sellerRepository.save(seller);
         }
     }
 }
