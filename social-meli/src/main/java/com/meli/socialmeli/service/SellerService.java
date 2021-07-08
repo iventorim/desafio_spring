@@ -79,4 +79,11 @@ public class SellerService {
     public void addSeller(Seller seller){
         sellerRepository.save(seller);
     }
+
+    public void updateSeller(int userId, Seller seller){
+        Seller altSeller = sellerRepository.findById(userId)
+                .orElseThrow(() -> new NoSuchElementException("Não foi encontrado nenhum usuário vendedor com o id: " + userId));
+        altSeller.setUsername(seller.getUsername());
+        sellerRepository.save(altSeller);
+    }
 }

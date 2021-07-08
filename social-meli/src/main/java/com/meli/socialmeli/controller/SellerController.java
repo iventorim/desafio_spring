@@ -35,4 +35,10 @@ public class SellerController {
     public void newSeller(@RequestBody Seller seller){
         sellerService.addSeller(seller);
     }
+
+    @PutMapping("/users/{userId}/update")
+    @ResponseStatus(HttpStatus.OK)
+    public void updateSeller(@PathVariable int userId, @RequestBody Seller seller){
+        sellerService.updateSeller(userId, seller);
+    }
 }
