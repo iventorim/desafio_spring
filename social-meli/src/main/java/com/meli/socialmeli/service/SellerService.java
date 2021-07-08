@@ -52,16 +52,15 @@ public class SellerService {
 
     private List<Post> sortListPostPromotionsSeller(List<Post> postsSellerPromotions, String order) {
 
-        if (Objects.nonNull(order)) {
-            postsSellerPromotions.sort((p1, p2) -> {
-                if (order.equals("name_asc")) {
-                    return p2.getDetail().getProductName().compareToIgnoreCase(p1.getDetail().getProductName());
-                } else if (order.equals("name_desc")) {
-                    return p1.getDetail().getProductName().compareToIgnoreCase(p2.getDetail().getProductName());
-                }
-                return 0;
-            });
-        }
+        postsSellerPromotions.sort((p1, p2) -> {
+            if ("name_asc".equals(order)) {
+                return p2.getDetail().getProductName().compareToIgnoreCase(p1.getDetail().getProductName());
+            } else if ("name_desc".equals(order)) {
+                return p1.getDetail().getProductName().compareToIgnoreCase(p2.getDetail().getProductName());
+            }
+            return 0;
+        });
+
         return postsSellerPromotions;
     }
 

@@ -32,16 +32,14 @@ public class ClientService {
         Client client = clientRepository.findById(UserID)
                 .orElseThrow(() -> new NoSuchElementException("UserId " + UserID + " não encontrado"));
 
-        if (order != null) {
-            client.getFollowing().sort((o1, o2) -> {
-                if (order.equals("name_asc")) {
-                    return o1.getUsername().compareTo(o2.getUsername());
-                } else if (order.equals("name_desc")) {
-                    return o2.getUsername().compareTo(o1.getUsername());
-                }
-                return 0;
-            });
-        }
+        client.getFollowing().sort((o1, o2) -> {
+            if ("name_asc".equals(order)) {
+                return o1.getUsername().compareTo(o2.getUsername());
+            } else if ("name_desc".equals(order)) {
+                return o2.getUsername().compareTo(o1.getUsername());
+            }
+            return 0;
+        });
         return client;
     }
 
