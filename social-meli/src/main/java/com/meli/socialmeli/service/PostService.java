@@ -1,5 +1,6 @@
 package com.meli.socialmeli.service;
 
+import com.meli.socialmeli.entity.Post;
 import com.meli.socialmeli.entity.Product;
 import com.meli.socialmeli.entity.Seller;
 import com.meli.socialmeli.form.PostForm;
@@ -25,7 +26,7 @@ public class PostService {
         this.productRepository = productRepository;
     }
 
-    public void save(PostForm postForm){
+    public Post save(PostForm postForm){
 
         Seller seller = sellerRepository.findById(postForm.getUserId())
                 .orElseThrow(() -> new NoSuchElementException("Vendedor com id: " + postForm.getUserId() + ", não encontrado"));
@@ -35,7 +36,7 @@ public class PostService {
                 .orElse(productRepository.save(postForm.getDetail()));
         postForm.setDetail(product);
 
-        postRepository.save(PostForm.convert(postForm));
+        return postRepository.save(PostForm.convert(postForm));
 
     }
 }
