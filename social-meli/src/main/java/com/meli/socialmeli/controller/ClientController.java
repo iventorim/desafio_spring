@@ -23,7 +23,7 @@ public class ClientController {
     @ApiOperation(value = "Funcionalidade para um cliente começar a seguir um determinado vendedor")
     @ApiImplicitParams(value = {
             @ApiImplicitParam(name = "userId", value = "Id do cliente", example = "1"),
-            @ApiImplicitParam(name = "userId", value = "Id do vendedor que se deseja seguir", example = "7")
+            @ApiImplicitParam(name = "userIdToFollow", value = "Id do vendedor que se deseja seguir", example = "7")
     })
     @PostMapping("{userId}/follow/{userIdToFollow}")
     @ResponseStatus(HttpStatus.OK)
@@ -34,7 +34,7 @@ public class ClientController {
     @ApiOperation(value = "Funcionalidade para um cliente parar de seguir um determinado vendedor")
     @ApiImplicitParams(value = {
             @ApiImplicitParam(name = "userId", value = "Id do cliente", example = "1"),
-            @ApiImplicitParam(name = "userId", value = "Id do vendedor que se deseja parar de seguir", example = "7")
+            @ApiImplicitParam(name = "userIdToFollow", value = "Id do vendedor que se deseja parar de seguir", example = "7")
     })
     @PostMapping("{userId}/unfollow/{userIdToUnfollow}")
     @ResponseStatus(HttpStatus.OK)
