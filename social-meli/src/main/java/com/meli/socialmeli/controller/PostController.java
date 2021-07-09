@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+import javax.validation.Valid;
 
 @RestController
 public class PostController {
@@ -22,7 +23,7 @@ public class PostController {
 
     @PostMapping(value = {"/products/newpost", "/products/newpromopost"})
     @ResponseStatus(HttpStatus.CREATED)
-    public Post save(@RequestBody PostForm postForm) {
+    public Post save(@Valid @RequestBody PostForm postForm) {
         return postService.save(postForm);
     }
 }

@@ -29,14 +29,7 @@ public class ProductService {
     }
 
     public Product createNewProduct(Product product) {
-        if (isNullOrBlank(product.getProductName())
-                || isNullOrBlank(product.getBrand())
-                || isNullOrBlank(product.getColor())
-                || isNullOrBlank(product.getNotes())
-                || isNullOrBlank(product.getType())
-        ) {
-            throw new HttpClientErrorException(HttpStatus.BAD_REQUEST, "Não pode haver valores nulos ou vazios no corpo da requisição");
-        }
+
         return productRepository.save(product);
     }
 

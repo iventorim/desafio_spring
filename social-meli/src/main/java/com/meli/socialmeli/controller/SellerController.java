@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import com.meli.socialmeli.dto.FollowersListDTO;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import javax.validation.Valid;
 import java.util.List;
 
 
@@ -40,7 +42,7 @@ public class SellerController {
 
     @PutMapping("/users/{userId}/update")
     @ResponseStatus(HttpStatus.OK)
-    public void updateSeller(@PathVariable int userId, @RequestBody Seller seller){
+    public void updateSeller(@PathVariable int userId, @Valid @RequestBody Seller seller){
         sellerService.updateSeller(userId, seller);
     }
 
