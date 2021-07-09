@@ -7,9 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
 
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
+import java.lang.reflect.Field;
+import java.util.*;
 
 @Service
 public class ProductService {
@@ -21,12 +20,16 @@ public class ProductService {
         this.productRepository = productRepository;
     }
 
-    public List<Product> getAllProducts(){
+    public static boolean isNullOrBlank(String param) {
+        return Objects.isNull(param) || param.trim().isEmpty();
+    }
+
+    public List<Product> getAllProducts() {
         return productRepository.findAll();
     }
 
     public Product createNewProduct(Product product) {
-        if (    isNullOrBlank(product.getProductName())
+        if (isNullOrBlank(product.getProductName())
                 || isNullOrBlank(product.getBrand())
                 || isNullOrBlank(product.getColor())
                 || isNullOrBlank(product.getNotes())
@@ -37,7 +40,26 @@ public class ProductService {
         return productRepository.save(product);
     }
 
-    public static boolean isNullOrBlank(String param) {
-        return Objects.isNull(param) || param.trim().isEmpty();
+    public void updateProduct(int id, Product product) {
+        Product productToBeUpdated = productRepository
+                .findById(id)
+                .orElseThrow(() -> new NoSuchElementException("Não foi encontrado nenhum produto com o id: " + id));
+
+        if (!isNullOrBlank(product.getProductName())) {
+            productToBeUpdated.setProductName(product.getProductName());
+        }
+        if (!isNullOrBlank(product.getBrand())) {
+            productToBeUpdated.setBrand(product.getBrand());
+        }
+        if (!isNullOrBlank(product.getColor())) {
+            productToBeUpdated.setColor(product.getColor());
+        }
+        if (!isNullOrBlank(product.getNotes())) {
+            productToBeUpdated.setNotes(product.getNotes());
+        }
+        if (!isNullOrBlank(product.getType())) {
+            productToBeUpdated.setType(product.getType());
+        }
+        productRepository.save(productToBeUpdated);
     }
 }

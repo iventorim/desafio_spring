@@ -50,16 +50,23 @@ public class ProductController {
         return new UserFollowingPostsDTO(userId, posts);
     }
 
+    // CRUD
+
     @PostMapping("/newProduct")
     @ResponseStatus(HttpStatus.CREATED)
-    public Product createNewProduct(@RequestBody Product product){
+    public Product createNewProduct(@RequestBody Product product) {
         return productService.createNewProduct(product);
     }
 
     @GetMapping("/getAll")
     @ResponseStatus(HttpStatus.OK)
-    public List<Product> getAllProducts(){
+    public List<Product> getAllProducts() {
         return productService.getAllProducts();
     }
 
+    @PutMapping("/update/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public void updateProduct(@PathVariable int id, @RequestBody Product product){
+        productService.updateProduct(id, product);
+    }
 }
