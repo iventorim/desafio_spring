@@ -40,7 +40,7 @@ public class SpringFoxConfig {
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
                 .title("Social Meli")
-                .description("Desafio Spring Wave 02-Brasil - API Rest Social Meli")
+                .description("Desafio Spring - Grupo 1 Wave 02 - Brasil - API Rest Social Meli")
                 .version("1.0.0")
                 .license("Apache License Version 2.0")
                 .licenseUrl("https://www.apache.org/licenses/LICENSE-2.0")
