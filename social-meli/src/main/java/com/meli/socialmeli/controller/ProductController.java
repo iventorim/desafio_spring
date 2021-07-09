@@ -50,10 +50,16 @@ public class ProductController {
         return new UserFollowingPostsDTO(userId, posts);
     }
 
-
     @PostMapping("/newProduct")
     @ResponseStatus(HttpStatus.CREATED)
-    public void createNewProduct(@RequestBody Product product){
-        productService.createNewProduct(product);
+    public Product createNewProduct(@RequestBody Product product){
+        return productService.createNewProduct(product);
     }
+
+    @GetMapping("/getAll")
+    @ResponseStatus(HttpStatus.OK)
+    public List<Product> getAllProducts(){
+        return productService.getAllProducts();
+    }
+
 }

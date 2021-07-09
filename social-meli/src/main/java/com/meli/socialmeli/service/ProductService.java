@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
 
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -20,9 +21,12 @@ public class ProductService {
         this.productRepository = productRepository;
     }
 
-    public void createNewProduct(Product product) {
-        if (Objects.isNull(product.getProductId())
-                || isNullOrBlank(product.getProductName())
+    public List<Product> getAllProducts(){
+        return productRepository.findAll();
+    }
+
+    public Product createNewProduct(Product product) {
+        if (    isNullOrBlank(product.getProductName())
                 || isNullOrBlank(product.getBrand())
                 || isNullOrBlank(product.getColor())
                 || isNullOrBlank(product.getNotes())
@@ -30,12 +34,7 @@ public class ProductService {
         ) {
             throw new HttpClientErrorException(HttpStatus.BAD_REQUEST, "Não pode haver valores nulos ou vazios no corpo da requisição");
         }
-
-        boolean productAlreadyExists = productRepository.findById(product.getProductId()).stream().anyMatch(p -> p.getProductId() == product.getProductId());
-        if (productAlreadyExists) {
-            throw new HttpClientErrorException(HttpStatus.BAD_REQUEST, "Já existe cadastro para produto com este ID");
-        }
-        productRepository.save(product);
+        return productRepository.save(product);
     }
 
     public static boolean isNullOrBlank(String param) {
