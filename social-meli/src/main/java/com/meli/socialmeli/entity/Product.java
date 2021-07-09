@@ -14,6 +14,7 @@ public class Product {
     @JsonProperty("product_id")
     private Integer productId;
 
+    @JsonProperty("product_name")
     private String productName;
 
     private String type;
