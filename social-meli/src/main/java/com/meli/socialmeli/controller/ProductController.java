@@ -69,4 +69,10 @@ public class ProductController {
     public void updateProduct(@PathVariable int id, @RequestBody Product product){
         productService.updateProduct(id, product);
     }
+
+    @DeleteMapping("/delete/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public void deleteProduct(@PathVariable int id){
+        productService.deleteProduct(id);
+    }
 }

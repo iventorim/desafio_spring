@@ -62,4 +62,11 @@ public class ProductService {
         }
         productRepository.save(productToBeUpdated);
     }
+
+    public void deleteProduct(int id) {
+        Product productToBeDeleted = productRepository
+                .findById(id)
+                .orElseThrow(() -> new NoSuchElementException("Não foi encontrado nenhum produto com o id: " + id));
+        productRepository.delete(productToBeDeleted);
+    }
 }
