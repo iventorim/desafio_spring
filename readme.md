@@ -1,4 +1,4 @@
-#Desafio Spring - Grupo 1 Wave 02 - Brasil - API Rest Social Meli
+# Desafio Spring - Grupo 1 Wave 02 - Brasil - API Rest Social Meli
 
 ### Requisitos:
  * Java >= 11
