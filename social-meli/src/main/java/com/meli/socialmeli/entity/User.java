@@ -2,6 +2,7 @@ package com.meli.socialmeli.entity;
 
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @MappedSuperclass
 public abstract class User {
@@ -10,6 +11,7 @@ public abstract class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     protected Integer userId;
 
+    @NotNull
     protected String username;
 
     public Integer getUserId() {
