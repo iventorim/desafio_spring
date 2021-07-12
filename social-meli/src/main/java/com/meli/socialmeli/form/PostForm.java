@@ -12,7 +12,6 @@ public class PostForm {
 
     @NotNull
     private Integer userId;
-    @NotNull
     private Integer id_post;
     @NotNull
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")

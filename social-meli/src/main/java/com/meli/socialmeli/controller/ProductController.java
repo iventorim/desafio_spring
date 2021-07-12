@@ -67,7 +67,7 @@ public class ProductController {
 
     @PutMapping("/update/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public void updateProduct(@PathVariable int id, @RequestBody Product product){
+    public void updateProduct(@PathVariable int id,@Valid @RequestBody Product product){
         productService.updateProduct(id, product);
     }
 
