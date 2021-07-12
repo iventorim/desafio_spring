@@ -5,22 +5,22 @@ import com.meli.socialmeli.entity.Post;
 import com.meli.socialmeli.entity.Product;
 import com.meli.socialmeli.entity.Seller;
 
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotBlank;
 import java.time.LocalDate;
 
 public class PostForm {
 
-    @NotNull
+    @NotBlank
     private Integer userId;
     private Integer id_post;
-    @NotNull
+    @NotBlank
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     private LocalDate date;
-    @NotNull
+    @NotBlank
     private Product detail;
-    @NotNull
+    @NotBlank
     private Integer category;
-    @NotNull
+    @NotBlank
     private Double price;
     private Seller seller;
     private boolean hasPromo = false;

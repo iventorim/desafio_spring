@@ -3,7 +3,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotBlank;
 import java.time.LocalDate;
 
 @Entity
@@ -13,7 +13,7 @@ public class Post {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idPost;
 
-    @NotNull
+    @NotBlank
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     private LocalDate date;
 
@@ -21,10 +21,10 @@ public class Post {
     @JoinColumn(name="productId")
     private Product detail;
 
-    @NotNull
+    @NotBlank
     private Integer category;
 
-    @NotNull
+    @NotBlank
     private Double price;
 
     private boolean hasPromo;
