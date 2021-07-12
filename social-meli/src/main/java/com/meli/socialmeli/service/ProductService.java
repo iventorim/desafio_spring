@@ -29,38 +29,21 @@ public class ProductService {
     }
 
     public Product createNewProduct(Product product) {
-        if (isNullOrBlank(product.getProductName())
-                || isNullOrBlank(product.getBrand())
-                || isNullOrBlank(product.getColor())
-                || isNullOrBlank(product.getNotes())
-                || isNullOrBlank(product.getType())
-        ) {
-            throw new HttpClientErrorException(HttpStatus.BAD_REQUEST, "Não pode haver valores nulos ou vazios no corpo da requisição");
-        }
+
         return productRepository.save(product);
     }
 
     public void updateProduct(int id, Product product) {
-        Product productToBeUpdated = productRepository
-                .findById(id)
-                .orElseThrow(() -> new NoSuchElementException("Não foi encontrado nenhum produto com o id: " + id));
 
-        if (!isNullOrBlank(product.getProductName())) {
-            productToBeUpdated.setProductName(product.getProductName());
+        Optional<Product> productToBeUpdated = productRepository
+                .findById(id);
+
+        if(productToBeUpdated.isPresent()){
+            product.setProductId(id);
         }
-        if (!isNullOrBlank(product.getBrand())) {
-            productToBeUpdated.setBrand(product.getBrand());
-        }
-        if (!isNullOrBlank(product.getColor())) {
-            productToBeUpdated.setColor(product.getColor());
-        }
-        if (!isNullOrBlank(product.getNotes())) {
-            productToBeUpdated.setNotes(product.getNotes());
-        }
-        if (!isNullOrBlank(product.getType())) {
-            productToBeUpdated.setType(product.getType());
-        }
-        productRepository.save(productToBeUpdated);
+
+        productRepository.save(product);
+
     }
 
     public void deleteProduct(int id) {

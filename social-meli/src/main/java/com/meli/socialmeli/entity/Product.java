@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Product {
@@ -14,15 +15,20 @@ public class Product {
     @JsonProperty("product_id")
     private Integer productId;
 
+    @NotNull
     @JsonProperty("product_name")
     private String productName;
 
+    @NotNull
     private String type;
 
+    @NotNull
     private String brand;
 
+    @NotNull
     private String color;
 
+    @NotNull
     private String notes;
 
     public Product() {}

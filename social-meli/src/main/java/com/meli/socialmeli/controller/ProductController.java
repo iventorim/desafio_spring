@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -70,7 +71,7 @@ public class ProductController {
     @ApiOperation(value = "Funcionalidade para cadastrar um produto")
     @PostMapping("/newProduct")
     @ResponseStatus(HttpStatus.CREATED)
-    public Product createNewProduct(@RequestBody Product product) {
+    public Product createNewProduct(@Valid @RequestBody Product product) {
         return productService.createNewProduct(product);
     }
 
@@ -87,7 +88,7 @@ public class ProductController {
     })
     @PutMapping("/update/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public void updateProduct(@PathVariable int id, @RequestBody Product product){
+    public void updateProduct(@PathVariable int id,@Valid @RequestBody Product product){
         productService.updateProduct(id, product);
     }
 
