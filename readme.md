@@ -6,7 +6,7 @@
 
 ### Docs:
 * Swagger: http://localhost:8080/swagger-ui/
-* Trello: 
+* Trello: https://trello.com/b/fZpu3HWR/desafio-spring-meli
 
 ### Integrantes Grupo 1
 
@@ -17,4 +17,5 @@
 * Igor de Moura Ventorim
   
 * João Pedro Brito Peres 
+
 * Vitor Vasconcellos Dos Santos
