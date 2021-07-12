@@ -2,6 +2,7 @@
 
 ### Requisitos:
  * Java >= 11
+ * Maven
 
 ### Docs:
 * Swagger: http://localhost:8080/swagger-ui/
