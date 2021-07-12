@@ -16,7 +16,6 @@ public class Product {
     private Integer productId;
 
     @NotBlank
-    @JsonProperty("product_name")
     private String productName;
 
     @NotBlank
