@@ -4,6 +4,7 @@ import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
 @Entity
@@ -13,7 +14,7 @@ public class Post {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idPost;
 
-    @NotBlank
+    @NotNull
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     private LocalDate date;
 
@@ -21,10 +22,10 @@ public class Post {
     @JoinColumn(name="productId")
     private Product detail;
 
-    @NotBlank
+    @NotNull
     private Integer category;
 
-    @NotBlank
+    @NotNull
     private Double price;
 
     private boolean hasPromo;
