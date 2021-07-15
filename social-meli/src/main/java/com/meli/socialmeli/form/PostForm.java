@@ -128,6 +128,13 @@ public class PostForm {
     }
 
     public static Post convert(PostForm postForm) {
-        return new Post(postForm.date, postForm.getDetail(), postForm.getCategory(), postForm.getPrice(), postForm.getSeller());
+        return new Post(postForm.date,
+                postForm.getDetail(),
+                postForm.getCategory(),
+                postForm.getPrice(),
+                postForm.isHasPromo(),
+                postForm.getDiscount(),
+                postForm.getSeller()
+        );
     }
 }
